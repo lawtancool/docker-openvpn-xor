@@ -11,7 +11,6 @@ fi
 set -e
 
 source "$OPENVPN/ovpn_env.sh"
-export EASYRSA_SSL_CONF="/usr/share/easy-rsa/openssl-1.0.0.cnf"
 
 # Specify "nopass" as arg[2] to make the CA insecure (not recommended!)
 nopass=$1
@@ -19,6 +18,8 @@ nopass=$1
 # Download EasyRSA because Ubuntu doesn't have it as a CLI command
 wget https://github.com/OpenVPN/easy-rsa/releases/download/v3.0.4/EasyRSA-3.0.4.tgz
 tar xvf EasyRSA-3.0.4.tgz
+
+export EASYRSA_SSL_CONF="EasyRSA-3.0.4/openssl-easyrsa.cnf"
 
 # Provides a sufficient warning before erasing pre-existing files
 EasyRSA-3.0.4/easyrsa init-pki

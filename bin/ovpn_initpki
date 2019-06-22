@@ -45,3 +45,6 @@ openvpn --genkey --secret $EASYRSA_PKI/ta.key
 
 # Generate the CRL for client/server certificates revocation.
 ~/EasyRSA-3.0.4/easyrsa gen-crl
+
+rm -r ~/EasyRSA-3.0.4/
+rm EasyRSA-3.0.4.tgz

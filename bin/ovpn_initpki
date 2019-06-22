@@ -21,16 +21,16 @@ tar xvf EasyRSA-unix-v3.0.6.tgz
 
 export EASYRSA="EasyRSA-unix-v3.0.6/"
 export EASYRSA_SSL_CONF="EasyRSA-unix-v3.0.6/openssl-easyrsa.cnf"
-cp -r EasyRSA-unix-v3.0.6/x509-types/ x509-types/
+cp -r EasyRSA-v3.0.6/x509-types/ x509-types/
 # Provides a sufficient warning before erasing pre-existing files
-EasyRSA-unix-v3.0.6/easyrsa init-pki
+EasyRSA-v3.0.6/easyrsa init-pki
 
 # CA always has a password for protection in event server is compromised. The
 # password is only needed to sign client/server certificates.  No password is
 # needed for normal OpenVPN operation.
-EasyRSA-unix-v3.0.6/easyrsa build-ca $nopass
+EasyRSA-v3.0.6/easyrsa build-ca $nopass
 
-EasyRSA-unix-v3.0.6/easyrsa gen-dh
+EasyRSA-v3.0.6/easyrsa gen-dh
 openvpn --genkey --secret $EASYRSA_PKI/ta.key
 
 # Was nice to autoset, but probably a bad idea in practice, users should
@@ -44,12 +44,12 @@ openvpn --genkey --secret $EASYRSA_PKI/ta.key
 #fi
 
 # For a server key with a password, manually init; this is autopilot
-EasyRSA-unix-v3.0.6/easyrsa build-server-full "$OVPN_CN" nopass
+EasyRSA-v3.0.6/easyrsa build-server-full "$OVPN_CN" nopass
 
 # Generate the CRL for client/server certificates revocation.
-EasyRSA-unix-v3.0.6/easyrsa gen-crl
+EasyRSA-v3.0.6/easyrsa gen-crl
 
 # Remove EasyRSA files when we're done
-rm -r EasyRSA-unix-v3.0.6/
+rm -r EasyRSA-v3.0.6/
 rm EasyRSA-unix-v3.0.6.tgz
 rm -r x509-types/

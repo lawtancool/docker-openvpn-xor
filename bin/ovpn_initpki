@@ -20,7 +20,7 @@ wget https://github.com/OpenVPN/easy-rsa/releases/download/v3.0.4/EasyRSA-3.0.4.
 tar xvf EasyRSA-3.0.4.tgz
 
 export EASYRSA_SSL_CONF="EasyRSA-3.0.4/openssl-easyrsa.cnf"
-
+cp -r EasyRSA-3.0.4/x509-types/ x509-types/
 # Provides a sufficient warning before erasing pre-existing files
 EasyRSA-3.0.4/easyrsa init-pki
 

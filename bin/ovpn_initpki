@@ -19,6 +19,7 @@ nopass=$1
 wget https://github.com/OpenVPN/easy-rsa/releases/download/v3.0.6/EasyRSA-unix-v3.0.6.tgz
 tar xvf EasyRSA-unix-v3.0.6.tgz
 
+export EASYRSA="EasyRSA-unix-v3.0.6/"
 export EASYRSA_SSL_CONF="EasyRSA-unix-v3.0.6/openssl-easyrsa.cnf"
 cp -r EasyRSA-unix-v3.0.6/x509-types/ x509-types/
 # Provides a sufficient warning before erasing pre-existing files

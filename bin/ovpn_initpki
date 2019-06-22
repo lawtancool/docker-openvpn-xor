@@ -11,6 +11,7 @@ fi
 set -e
 
 source "$OPENVPN/ovpn_env.sh"
+export EASYRSA_SSL_CONF="/usr/share/easy-rsa/openssl-1.0.0.cnf"
 
 # Specify "nopass" as arg[2] to make the CA insecure (not recommended!)
 nopass=$1

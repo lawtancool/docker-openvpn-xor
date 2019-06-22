@@ -47,5 +47,5 @@ EasyRSA-3.0.4/easyrsa build-server-full "$OVPN_CN" nopass
 EasyRSA-3.0.4/easyrsa gen-crl
 
 # Remove EasyRSA files when we're done
-rm -r ~/EasyRSA-3.0.4/
+rm -r EasyRSA-3.0.4/
 rm EasyRSA-3.0.4.tgz

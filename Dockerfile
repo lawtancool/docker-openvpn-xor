@@ -1,15 +1,31 @@
 # Original credit: https://github.com/jpetazzo/dockvpn
 
 # Smallest base image
-FROM alpine:latest
+FROM ubuntu:latest
 
 LABEL maintainer="Kyle Manna <kyle@kylemanna.com>"
 
 # Testing: pamtester
-RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories && \
-    apk add --update openvpn iptables bash easy-rsa openvpn-auth-pam google-authenticator pamtester && \
-    ln -s /usr/share/easy-rsa/easyrsa /usr/local/bin && \
-    rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*
+#RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories && \
+#    apk add --update openvpn iptables bash easy-rsa openvpn-auth-pam google-authenticator pamtester && \
+#    ln -s /usr/share/easy-rsa/easyrsa /usr/local/bin && \
+#    rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*
+    
+RUN apt-get update && apt-get install wget tar unzip build-essential libssl-dev iproute2 liblz4-dev liblzo2-dev libpam0g-dev libpkcs11-helper1-dev libsystemd-dev resolvconf pkg-config && \
+    wget http://swupdate.openvpn.org/community/releases/openvpn-2.4.6.tar.gz && tar xvf openvpn-2.4.6.tar.gz && \
+    wget https://github.com/Tunnelblick/Tunnelblick/archive/master.zip && unzip master.zip && \
+    cp Tunnelblick-master/third_party/sources/openvpn/openvpn-2.4.6/patches/*.diff openvpn-2.4.6 && \
+    cd openvpn-2.4.6 && \
+    patch -p1 < 02-tunnelblick-openvpn_xorpatch-a.diff && \
+    patch -p1 < 03-tunnelblick-openvpn_xorpatch-b.diff && \
+    patch -p1 < 04-tunnelblick-openvpn_xorpatch-c.diff && \
+    patch -p1 < 05-tunnelblick-openvpn_xorpatch-d.diff && \
+    patch -p1 < 06-tunnelblick-openvpn_xorpatch-e.diff && \
+    ./configure --enable-systemd --enable-async-push --enable-iproute2 && \
+    make && make install
+    
+
+
 
 # Needed by scripts
 ENV OPENVPN /etc/openvpn

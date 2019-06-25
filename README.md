@@ -1,22 +1,11 @@
 # OpenVPN for Docker
 
-[![Build Status](https://travis-ci.org/kylemanna/docker-openvpn.svg)](https://travis-ci.org/kylemanna/docker-openvpn)
-[![Docker Stars](https://img.shields.io/docker/stars/kylemanna/openvpn.svg)](https://hub.docker.com/r/kylemanna/openvpn/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/kylemanna/openvpn.svg)](https://hub.docker.com/r/kylemanna/openvpn/)
-[![ImageLayers](https://images.microbadger.com/badges/image/kylemanna/openvpn.svg)](https://microbadger.com/#/images/kylemanna/openvpn)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fkylemanna%2Fdocker-openvpn.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fkylemanna%2Fdocker-openvpn?ref=badge_shield)
-[![Anchore Image Overview](https://anchore.io/service/badges/image/af41b351247fc340958e9c67aed342860da328339257f809c043c865679d981d)](https://anchore.io/image/dockerhub/kylemanna%2Fopenvpn%3Alatest)
-
-
-OpenVPN server in a Docker container complete with an EasyRSA PKI CA.
-
-Extensively tested on [Digital Ocean $5/mo node](http://bit.ly/1C7cKr3) and has
-a corresponding [Digital Ocean Community Tutorial](http://bit.ly/1AGUZkq).
+OpenVPN server in a Docker container complete with an EasyRSA PKI CA, with support for the [Tunnelblick obfuscation patch](https://tunnelblick.net/cOpenvpn_xorpatch.html). Based on [kylemanna's docker-openvpn image](https://github.com/kylemanna/docker-openvpn).
 
 #### Upstream Links
 
-* Docker Registry @ [kylemanna/openvpn](https://hub.docker.com/r/kylemanna/openvpn/)
-* GitHub @ [kylemanna/docker-openvpn](https://github.com/kylemanna/docker-openvpn)
+* Docker Registry @ [lawtancool/docker-openvpn-xor](https://hub.docker.com/r/lawtancool/docker-openvpn-xor)
+* GitHub @ [lawtancool/docker-openvpn-xor](https://github.com/lawtancool/docker-openvpn-xor)
 
 ## Quick Start
 
@@ -32,20 +21,20 @@ a corresponding [Digital Ocean Community Tutorial](http://bit.ly/1AGUZkq).
   private key used by the newly generated certificate authority.
 
       docker volume create --name $OVPN_DATA
-      docker run -v $OVPN_DATA:/etc/openvpn --log-driver=none --rm kylemanna/openvpn ovpn_genconfig -u udp://VPN.SERVERNAME.COM
-      docker run -v $OVPN_DATA:/etc/openvpn --log-driver=none --rm -it kylemanna/openvpn ovpn_initpki
+      docker run -v $OVPN_DATA:/etc/openvpn --log-driver=none --rm lawtancool/docker-openvpn-xor ovpn_genconfig -u udp://VPN.SERVERNAME.COM
+      docker run -v $OVPN_DATA:/etc/openvpn --log-driver=none --rm -it lawtancool/docker-openvpn-xor ovpn_initpki
 
 * Start OpenVPN server process
 
-      docker run -v $OVPN_DATA:/etc/openvpn -d -p 1194:1194/udp --cap-add=NET_ADMIN kylemanna/openvpn
+      docker run -v $OVPN_DATA:/etc/openvpn -d -p 1194:1194/udp --cap-add=NET_ADMIN lawtancool/docker-openvpn-xor
 
 * Generate a client certificate without a passphrase
 
-      docker run -v $OVPN_DATA:/etc/openvpn --log-driver=none --rm -it kylemanna/openvpn ovpn_genclientcert CLIENTNAME nopass
+      docker run -v $OVPN_DATA:/etc/openvpn --log-driver=none --rm -it lawtancool/docker-openvpn-xor ovpn_genclientcert CLIENTNAME nopass
 
 * Retrieve the client configuration with embedded certificates
 
-      docker run -v $OVPN_DATA:/etc/openvpn --log-driver=none --rm kylemanna/openvpn ovpn_getclient CLIENTNAME > CLIENTNAME.ovpn
+      docker run -v $OVPN_DATA:/etc/openvpn --log-driver=none --rm lawtancool/docker-openvpn-xor ovpn_getclient CLIENTNAME > CLIENTNAME.ovpn
 
 ## Next Steps
 

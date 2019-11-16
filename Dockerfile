@@ -12,10 +12,10 @@ LABEL maintainer="Kyle Manna <kyle@kylemanna.com>"
 #    rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*
     
 RUN apt-get update && apt-get install -y wget tar unzip build-essential libssl-dev iproute2 liblz4-dev liblzo2-dev libpam0g-dev libpkcs11-helper1-dev libsystemd-dev easy-rsa iptables pkg-config && \
-    wget http://swupdate.openvpn.org/community/releases/openvpn-2.4.7.tar.gz && tar xvf openvpn-2.4.7.tar.gz && \
-    wget https://github.com/Tunnelblick/Tunnelblick/archive/master.zip && unzip master.zip && \
-    cp Tunnelblick-master/third_party/sources/openvpn/openvpn-2.4.7/patches/*.diff openvpn-2.4.7 && \
-    cd openvpn-2.4.7 && \
+    wget http://swupdate.openvpn.org/community/releases/openvpn-2.4.8.tar.gz && tar xvf openvpn-2.4.8.tar.gz && \
+    wget https://github.com/Tunnelblick/Tunnelblick/archive/v3.8.2beta02.zip && unzip v3.8.2beta02.zip && \
+    cp Tunnelblick-master/third_party/sources/openvpn/openvpn-2.4.8/patches/*.diff openvpn-2.4.8 && \
+    cd openvpn-2.4.8 && \
     patch -p1 < 02-tunnelblick-openvpn_xorpatch-a.diff && \
     patch -p1 < 03-tunnelblick-openvpn_xorpatch-b.diff && \
     patch -p1 < 04-tunnelblick-openvpn_xorpatch-c.diff && \
@@ -24,9 +24,6 @@ RUN apt-get update && apt-get install -y wget tar unzip build-essential libssl-d
     ./configure --disable-systemd --enable-async-push --enable-iproute2 && \
     make && make install
     
-
-
-
 # Needed by scripts
 ENV OPENVPN /etc/openvpn
 ENV EASYRSA /usr/share/easy-rsa

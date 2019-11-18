@@ -7,6 +7,10 @@ OpenVPN server in a Docker container complete with an EasyRSA PKI CA, with suppo
 * Docker Registry @ [lawtancool/docker-openvpn-xor](https://hub.docker.com/r/lawtancool/docker-openvpn-xor)
 * GitHub @ [lawtancool/docker-openvpn-xor](https://github.com/lawtancool/docker-openvpn-xor)
 
+#### Clients with support for the Tunnelblick obfuscation patch
+* Windows: https://github.com/lawtancool/openvpn-windows-xor
+* Android: https://github.com/lawtancool/ics-openvpn-xor
+
 ## Quick Start
 
 * Pick a name for the `$OVPN_DATA` data volume container. It's recommended to

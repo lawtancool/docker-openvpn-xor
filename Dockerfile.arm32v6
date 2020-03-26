@@ -8,7 +8,7 @@ RUN apk add curl && curl -L ${QEMU_URL} | tar zxvf - -C . --strip-components 1
 # Original credit: https://github.com/jpetazzo/dockvpn
 
 # Smallest base image
-FROM arm64v8/ubuntu:18.04
+FROM arm32v6/ubuntu:18.04
 
 LABEL maintainer="lawtancool"
 

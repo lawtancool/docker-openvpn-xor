@@ -5,7 +5,7 @@ FROM arm64v8/ubuntu:18.04
 
 LABEL maintainer="lawtancool"
 
-COPY qemu-arm-static /usr/bin
+COPY qemu-aarch64-static /usr/bin
 
 # Testing: pamtester
 #RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories && \

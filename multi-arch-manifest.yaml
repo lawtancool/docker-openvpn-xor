@@ -4,11 +4,6 @@ manifests:
     platform:
       architecture: amd64
       os: linux
-  - image: lawtancool/docker-openvpn-xor:arm32v6
-    platform:
-      architecture: arm
-      os: linux
-      variant: v6
   - image: lawtancool/docker-openvpn-xor:arm32v7
     platform:
       architecture: arm

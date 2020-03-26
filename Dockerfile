@@ -10,7 +10,7 @@ LABEL maintainer="lawtancool"
 #    apk add --update openvpn iptables bash easy-rsa openvpn-auth-pam google-authenticator pamtester && \
 #    ln -s /usr/share/easy-rsa/easyrsa /usr/local/bin && \
 #    rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*
-    
+
 RUN apt-get update && apt-get install -y wget tar unzip build-essential libssl-dev iproute2 liblz4-dev liblzo2-dev libpam0g-dev libpkcs11-helper1-dev libsystemd-dev easy-rsa iptables pkg-config && \
     wget http://swupdate.openvpn.org/community/releases/openvpn-2.4.8.tar.gz && tar xvf openvpn-2.4.8.tar.gz && \
     wget https://github.com/Tunnelblick/Tunnelblick/archive/v3.8.2beta02.zip && unzip v3.8.2beta02.zip && \
@@ -22,8 +22,9 @@ RUN apt-get update && apt-get install -y wget tar unzip build-essential libssl-d
     patch -p1 < 05-tunnelblick-openvpn_xorpatch-d.diff && \
     patch -p1 < 06-tunnelblick-openvpn_xorpatch-e.diff && \
     ./configure --disable-systemd --enable-async-push --enable-iproute2 && \
-    make && make install
-    
+    make && make install && \
+    cd .. && rm -r openvpn-2.4.8 && rm -r Tunnelblick-3.8.2beta02
+
 # Needed by scripts
 ENV OPENVPN /etc/openvpn
 ENV EASYRSA /usr/share/easy-rsa
@@ -35,7 +36,7 @@ ENV EASYRSA_CRL_DAYS 3650
 
 VOLUME ["/etc/openvpn"]
 
-# Internally uses port 1194/udp, remap using `docker run -p 443:1194/tcp`
+# Internally uses port 1194, remap if needed using `docker run -p 443:1194/tcp`
 EXPOSE 1194
 
 CMD ["ovpn_run"]

@@ -12,10 +12,10 @@ LABEL maintainer="lawtancool"
 #    rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*
 
 RUN apt-get update && apt-get install -y wget tar unzip build-essential libssl-dev iproute2 liblz4-dev liblzo2-dev libpam0g-dev libpkcs11-helper1-dev libsystemd-dev easy-rsa iptables pkg-config && \
-    wget http://swupdate.openvpn.org/community/releases/openvpn-2.4.8.tar.gz && tar xvf openvpn-2.4.8.tar.gz && \
+    wget http://swupdate.openvpn.org/community/releases/openvpn-2.4.9.tar.gz && tar xvf openvpn-2.4.9.tar.gz && \
     wget https://github.com/Tunnelblick/Tunnelblick/archive/v3.8.2beta02.zip && unzip v3.8.2beta02.zip && \
-    cp Tunnelblick-3.8.2beta02/third_party/sources/openvpn/openvpn-2.4.8/patches/*.diff openvpn-2.4.8 && \
-    cd openvpn-2.4.8 && \
+    cp Tunnelblick-3.8.2beta02/third_party/sources/openvpn/openvpn-2.4.9/patches/*.diff openvpn-2.4.9 && \
+    cd openvpn-2.4.9 && \
     patch -p1 < 02-tunnelblick-openvpn_xorpatch-a.diff && \
     patch -p1 < 03-tunnelblick-openvpn_xorpatch-b.diff && \
     patch -p1 < 04-tunnelblick-openvpn_xorpatch-c.diff && \
@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y wget tar unzip build-essential libssl-d
     patch -p1 < 06-tunnelblick-openvpn_xorpatch-e.diff && \
     ./configure --disable-systemd --enable-async-push --enable-iproute2 && \
     make && make install && \
-    cd .. && rm -r openvpn-2.4.8 && rm -r Tunnelblick-3.8.2beta02
+    cd .. && rm -r openvpn-2.4.9 && rm -r Tunnelblick-3.8.2beta02
 
 # Needed by scripts
 ENV OPENVPN /etc/openvpn

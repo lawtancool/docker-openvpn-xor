@@ -192,4 +192,4 @@ of a guarantee in the future.
 
 ## Differences from kylemanna/openvpn
 * Based on Ubuntu instead of Alpine
-* Compiles OpenVPN 2.4.7 from source, applying the [Tunnelblick obfuscation patches](https://github.com/Tunnelblick/Tunnelblick/tree/master/third_party/sources/openvpn/openvpn-2.4.7/patches)
+* Compiles OpenVPN 2.5.0 from source, applying the [Tunnelblick obfuscation patches](https://github.com/Tunnelblick/Tunnelblick/tree/master/third_party/sources/openvpn/openvpn-2.5.0/patches)

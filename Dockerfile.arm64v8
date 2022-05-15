@@ -1,7 +1,7 @@
 # Original credit: https://github.com/jpetazzo/dockvpn
 
 # Smallest base image
-FROM arm64v8/ubuntu:18.04
+FROM arm64v8/ubuntu:22.10
 
 LABEL maintainer="lawtancool"
 

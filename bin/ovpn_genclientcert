@@ -16,14 +16,14 @@ set -e
 source "$OPENVPN/ovpn_env.sh"
 
 # Download EasyRSA because Ubuntu doesn't have it as a CLI command
-wget https://github.com/OpenVPN/easy-rsa/releases/download/v3.0.6/EasyRSA-unix-v3.0.6.tgz
-tar xvf EasyRSA-unix-v3.0.6.tgz
+wget https://github.com/OpenVPN/easy-rsa/releases/download/v3.1.7/EasyRSA-3.1.7.tgz
+tar xvf EasyRSA-3.1.7.tgz
 
-export EASYRSA="EasyRSA-v3.0.6/"
-export EASYRSA_SSL_CONF="EasyRSA-v3.0.6/openssl-easyrsa.cnf"
+export EASYRSA="EasyRSA-3.1.7/"
+export EASYRSA_SSL_CONF="EasyRSA-3.1.7/openssl-easyrsa.cnf"
 
-EasyRSA-v3.0.6/easyrsa build-client-full $CLIENTNAME $PASSWORD
+EasyRSA-3.1.7/easyrsa build-client-full $CLIENTNAME $PASSWORD
 
 # Remove EasyRSA files when we're done
-rm -r EasyRSA-v3.0.6/
-rm EasyRSA-unix-v3.0.6.tgz
+rm -r EasyRSA-3.1.7/
+rm EasyRSA-3.1.7.tgz

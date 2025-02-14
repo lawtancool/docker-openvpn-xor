@@ -1,7 +1,7 @@
 # Original credit: https://github.com/jpetazzo/dockvpn
 
-# Smallest base image
-FROM ubuntu:18.04@sha256:9bc830af2bef73276515a29aa896eedfa7bdf4bdbc5c1063b4c457a4bbb8cd79
+# Ubuntu image
+FROM ubuntu:24.04
 
 LABEL maintainer="lawtancool"
 
@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y wget tar unzip build-essential libssl-d
     patch -p1 < 06-tunnelblick-openvpn_xorpatch-e.diff && \
     ./configure --disable-systemd --enable-async-push --enable-iproute2 && \
     make && make install && \
-    cd .. && rm -r openvpn-2.5.3 && rm -r Tunnelblick-3.8.6beta05
+    cd .. && rm -rf openvpn-2.5.3* Tunnelblick-3.8.6beta05 v3.8.6beta05.zip
 
 # Needed by scripts
 ENV OPENVPN /etc/openvpn

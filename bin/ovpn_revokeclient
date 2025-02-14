@@ -31,22 +31,22 @@ fi
 
 revoke_client_certificate(){
     # Download EasyRSA because Ubuntu doesn't have it as a CLI command
-    wget https://github.com/OpenVPN/easy-rsa/releases/download/v3.0.6/EasyRSA-unix-v3.0.6.tgz
-    tar xvf EasyRSA-unix-v3.0.6.tgz
+    wget https://github.com/OpenVPN/easy-rsa/releases/download/v3.1.7/EasyRSA-3.1.7.tgz
+    tar xvf EasyRSA-3.1.7.tgz
 
-    export EASYRSA="EasyRSA-v3.0.6/"
-    export EASYRSA_SSL_CONF="EasyRSA-v3.0.6/openssl-easyrsa.cnf"
-    cp -r EasyRSA-v3.0.6/x509-types/ x509-types/
+    export EASYRSA="EasyRSA-3.1.7/"
+    export EASYRSA_SSL_CONF="EasyRSA-3.1.7/openssl-easyrsa.cnf"
+    cp -r EasyRSA-3.1.7/x509-types/ x509-types/
     
-    EasyRSA-v3.0.6/easyrsa revoke "$1"
+    EasyRSA-3.1.7/easyrsa revoke "$1"
     echo "Generating the Certificate Revocation List :"
-    EasyRSA-v3.0.6/easyrsa gen-crl
+    EasyRSA-3.1.7/easyrsa gen-crl
     cp -f "$EASYRSA_PKI/crl.pem" "$OPENVPN/crl.pem"
     chmod 644 "$OPENVPN/crl.pem"
     
     # Remove EasyRSA files when we're done
-    rm -r EasyRSA-v3.0.6/
-    rm EasyRSA-unix-v3.0.6.tgz
+    rm -r EasyRSA-3.1.7/
+    rm EasyRSA-3.1.7.tgz
     rm -r x509-types/
 }
 

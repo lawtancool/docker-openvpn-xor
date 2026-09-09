@@ -1,7 +1,7 @@
 # Original credit: https://github.com/jpetazzo/dockvpn
 
 # Smallest base image
-FROM ubuntu:18.04@sha256:9bc830af2bef73276515a29aa896eedfa7bdf4bdbc5c1063b4c457a4bbb8cd79
+FROM ubuntu:26.04@sha256:513c074113a871b51a8d16ab445c88779d6452d937a164fb5cc479f32668a41d
 
 LABEL maintainer="lawtancool"
 
